@@ -7,11 +7,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Entity
 @Table(name="students")
-
+@NoArgsConstructor
 public class Student {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,6 +32,9 @@ public class Student {
 	private String password;
 	@Column(name="whatsapp_number")
 	private Long whatsappNumber;
+
+	@Column(name = "payment_status")
+	Boolean paymentStatus;
 	public Student(Integer stdId, String studentName, String dob, String parentsName, String relationship, String email,
 			String password, Long whatsappNumber) {
 		super();
@@ -95,8 +99,16 @@ public class Student {
 	public String toString() {
 		return "Student [stdId=" + stdId + ", studentName=" + studentName + ", dob=" + dob + ", parentsName="
 				+ parentsName + ", relationship=" + relationship + ", email=" + email + ", password=" + password
-				+ ", whatsappNumber=" + whatsappNumber + "]";
+				+ ", whatsappNumber=" + whatsappNumber
+				+", paymentStatus="+ paymentStatus
+				+ "]";
 	}
-	
 
+	public Boolean getPaymentStatus() {
+		return paymentStatus;
+	}
+
+	public void setPaymentStatus(Boolean paymentStatus) {
+		this.paymentStatus = paymentStatus;
+	}
 }

@@ -4,6 +4,7 @@ package com.kreativity.studentregister.controller;
 import java.util.List;
 
 
+import com.kreativity.studentregister.dto.LoginDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,7 @@ import com.kreativity.studentregister.service.StudentService;
 
 @RestController
 @RequestMapping("/students")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class StudentController {
 	 @Autowired
 	 private StudentService studentService;
@@ -54,6 +56,9 @@ public class StudentController {
 	        return ResponseEntity.noContent().build();
 	    }
 
-		
+		@PostMapping("/login")
+		public ResponseEntity<?> login(@RequestBody LoginDto student) throws Exception {
+		 return studentService.login(student);
+		}
 
 }
