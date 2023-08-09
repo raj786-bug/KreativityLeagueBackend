@@ -12,11 +12,10 @@ import com.twilio.type.PhoneNumber;
 
 @Component
 public class SmsService {
-	private final String ACCOUNT_SID ="AC41800ed0d29510bac485afbdcb9d53b4";
+	private final String ACCOUNT_SID ="AC4c5863a7a9eeea530502d188df111452";
+    private final String AUTH_TOKEN = "e0f88fd22a7325efef12e3747f52244c";
 
-    private final String AUTH_TOKEN = "b4d93396e1eb3290a56359a6235a1299";
-
-    private final String FROM_NUMBER = "+13187502981";
+    private final String FROM_NUMBER = "+17755215828";
     
     @Autowired
     private OtpVerificationService otpVerificationService;

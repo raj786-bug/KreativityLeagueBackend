@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 
 
 @Entity
-@Table(name="students")
+@Table(name="student")
 @NoArgsConstructor
 public class Student {
 	@Id
@@ -35,6 +35,7 @@ public class Student {
 
 	@Column(name = "payment_status")
 	Boolean paymentStatus;
+   
 	public Student(Integer stdId, String studentName, String dob, String parentsName, String relationship, String email,
 			String password, Long whatsappNumber) {
 		super();

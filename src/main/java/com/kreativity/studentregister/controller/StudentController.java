@@ -55,7 +55,7 @@ public class StudentController {
 	        studentService.deleteStudent(stdId);
 	        return ResponseEntity.noContent().build();
 	    }
-
+	    @CrossOrigin
 		@PostMapping("/login")
 		public ResponseEntity<?> login(@RequestBody LoginDto student) throws Exception {
 		 return studentService.login(student);

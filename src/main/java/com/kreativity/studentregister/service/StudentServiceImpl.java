@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.kreativity.studentregister.entity.LoginResponse;
+import com.kreativity.studentregister.entity.OtpResponse;
 import com.kreativity.studentregister.entity.Student;
 import com.kreativity.studentregister.repo.StudentRepo;
 
@@ -48,12 +50,17 @@ public class StudentServiceImpl implements StudentService{
 	}
 
 	public ResponseEntity<?> login(LoginDto student){
-		Student data = studentRepo.findByEmail(student.getEmail()).orElse(null);
+		Student data = studentRepo.findByEmailAndPassword(student.getEmail(),student.getPassword()).orElse(null);
 		System.out.println(data+" DATA VALUES .");
-		if (data==null || !data.getPassword().equals(student.getPassword()) || !data.getPaymentStatus()) {
-			return null;
-		}else
-			return new ResponseEntity<>(data , HttpStatus.OK);
+		if (data!=null) {
+			LoginResponse response=new LoginResponse(true,"Login Successfull");
+			return ResponseEntity.ok().body(response);
+		}
+		else  {
+			LoginResponse response=new LoginResponse(false,"Login Unsuccessfull");
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
 	}
-
+	}
+	
+	
 }
